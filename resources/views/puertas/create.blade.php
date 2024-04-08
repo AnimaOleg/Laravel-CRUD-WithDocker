@@ -1,0 +1,91 @@
+@extends('layouts.base')
+
+@section('content')
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h2>Crear Puerta</h2>
+        </div>
+        <div>
+            <a href="{{route('puertas.index')}}" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+
+    <!-- OLEG - Muestreo de Errorres -->
+    @if ($errors->any())
+        <div class="alert alert-danger mt-2">
+            <strong>Por las chanclas de mi madre!</strong> Algo fue mal..<br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{route('puertas.store')}}" method="POST">
+        <!-- OLEG - Añadir Toquen - Evitar CrossFit/AtaqueCruzado -->
+        @csrf
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+                <div class="form-group">
+                    <strong>Nombre:</strong>
+                    <input type="text" name="nombre" class="form-control" placeholder="Tarea" >
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                <div class="form-group">
+                    <strong>Tipo:</strong>
+                    <select name="status" class="form-select" id="">
+                        <option value="">-- Elige el status --</option>
+                        <option value="Jardin">Jardín</option>
+                        <option value="Rellano">Rellano</option>
+                        <option value="Garaje">Garaje</option>
+                        <option value="Castillo">Castillo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                <div class="form-group">
+                    <strong>Material:</strong>
+                    <select name="material" class="form-select" id="">
+                        <option value="">-- Elige el status --</option>
+                        <option value="Madera">Madera</option>
+                        <option value="Acero">Acero</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+                <div class="form-group">
+                    <strong>Descripción:</strong>
+                    <textarea class="form-control" style="height:150px" name="descripcion" placeholder="Descripción..."></textarea>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                <div class="form-group">
+                    <strong>Precio:</strong>
+                    <input type="number" step="any" class="form-control" name="precio" >
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+                <div class="form-group">
+                    <strong>Fecha límite:</strong>
+                    <input type="date" name="due_date" class="form-control" id="">
+                    <!-- Cuadrar campo con el de la BD -->
+                    <!-- <input type="date" name="due_datetime => due_date" class="form-control" id=""> -->
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </form>
+</div>
+@endsection
