@@ -21,6 +21,7 @@
 
     <!-- Oleg - Paginador -->
     <div class="col-12 mt-2" style="background-color: white; padding: 6px">
+        <span class="text-secondary">Paginador para + de 3 elementos</span>
         {{$puertas->links()}}
     </div>
 
